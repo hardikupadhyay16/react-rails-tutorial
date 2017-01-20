@@ -2,8 +2,8 @@ var Body = React.createClass({
     render() {
         return (
             <div>
-                <NewItem />
-                <AllItems />
+                <NewPost />
+                <AllPosts />
             </div>
         )
     }
