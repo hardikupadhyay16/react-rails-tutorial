@@ -49,3 +49,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'react-rails', github: 'reactjs/react-rails', branch: 'master'
 gem 'showdown-rails'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
