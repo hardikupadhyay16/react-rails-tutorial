@@ -4,9 +4,14 @@ var NewPost= React.createClass({
         var description = this.refs.description.value;
         $.ajax({
             url: 'posts',
+            dataType: 'json',
             type: 'POST',
             data: { post: { title: title, description: description } },
-            success: (response) => { console.log('it worked!', response); }
+            success: (response) => {
+                this.props.handleSubmit(response);
+                this.refs.title.value = '';
+                this.refs.description.value = '';
+            }
         });
     },
 

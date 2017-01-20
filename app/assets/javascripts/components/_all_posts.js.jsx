@@ -1,17 +1,14 @@
 var AllPosts = React.createClass({
-
-    getInitialState() {
-        return { posts: [] }
-    },
-    componentDidMount() {
-        $.getJSON('/posts.json', (response) => { this.setState({ posts: response }) });
+    handleDelete(id) {
+        this.props.handleDelete(id);
     },
     render() {
-        var posts = this.state.posts.map((post) => {
+        var posts = this.props.posts.map((post) => {
             return (
                 <div key={post.id}>
                     <h3>{post.title}</h3>
                     <p>{post.description}</p>
+                    <button onClick={this.handleDelete.bind(this, post.id)}>Delete</button>
                 </div>
             )
         });
