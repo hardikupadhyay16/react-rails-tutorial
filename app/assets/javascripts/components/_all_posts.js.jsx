@@ -2,13 +2,16 @@ var AllPosts = React.createClass({
     handleDelete(id) {
         this.props.handleDelete(id);
     },
+    onUpdate(post) {
+        this.props.onUpdate(post);
+    },
     render() {
         var posts = this.props.posts.map((post) => {
             return (
                 <div key={post.id}>
-                    <h3>{post.title}</h3>
-                    <p>{post.description}</p>
-                    <button onClick={this.handleDelete.bind(this, post.id)}>Delete</button>
+                    <Post post={post}
+                          handleDelete={this.handleDelete.bind(this, post.id)}
+                          handleUpdate={this.onUpdate}/>
                 </div>
             )
         });

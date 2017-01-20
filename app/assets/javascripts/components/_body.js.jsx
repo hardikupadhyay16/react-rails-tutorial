@@ -17,6 +17,24 @@ var Body = React.createClass({
             success:() => { this.removeItemClient(id); }
         });
     },
+    handleUpdate(post) {
+        $.ajax({
+            url: `/posts/${post.id}`,
+            dataType: 'json',
+            type: 'PUT',
+            data: { post: post },
+            success: () => {
+                this.updateItems(post);
+            }
+        })
+    },
+    updateItems(post) {
+        console.log(post)
+
+        var posts = this.state.posts.filter((i) => { return i.id != post.id });
+        posts.push(post);
+        this.setState({posts: posts });
+    },
     removeItemClient(id) {
         var remainPost = this.state.posts.filter((post) => {
             return post.id != id;
@@ -27,7 +45,7 @@ var Body = React.createClass({
         return (
             <div>
                 <NewPost handleSubmit={this.handleSubmit}/>
-                <AllPosts posts={this.state.posts} handleDelete={this.handleDelete}/>
+                <AllPosts posts={this.state.posts} handleDelete={this.handleDelete} onUpdate={this.handleUpdate}/>
             </div>
         )
     }
