@@ -1,7 +1,11 @@
 var NewPost= React.createClass({
+    getInitialState() {
+        return { errors: {} }
+    },
     handleClick() {
         var title = this.refs.title.value;
         var description = this.refs.description.value;
+        var that = this;
         $.ajax({
             url: 'posts',
             dataType: 'json',
@@ -11,6 +15,10 @@ var NewPost= React.createClass({
                 this.props.handleSubmit(response);
                 this.refs.title.value = '';
                 this.refs.description.value = '';
+                that.setState({errors: {}})
+            },
+            error(response) {
+                that.setState({errors: response.responseJSON})
             }
         });
     },
@@ -18,9 +26,15 @@ var NewPost= React.createClass({
     render() {
         return (
             <div>
-                <input ref='title' placeholder='Enter the name of the post' />
-                <input ref='description' placeholder='Enter a post' />
-                <button onClick={this.handleClick}>Submit</button>
+                <div className="form-group">
+                    <input ref='title' placeholder='Enter Title of the post' className="text form-control"/>
+                    <span style={{color: 'red'}}>{this.state.errors.title}</span>
+                </div>
+                <div className="form-group">
+                    <input ref='description' placeholder='Enter description of the post' className="text form-control"/>
+                    <span style={{color: 'red'}}>{this.state.errors.description}</span>
+                </div>
+                <button onClick={this.handleClick} className="btn btn-primary">Submit</button>
             </div>
         )
     }
