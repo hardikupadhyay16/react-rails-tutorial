@@ -27,6 +27,7 @@ var NewUser= React.createClass({
     render() {
         return (
             <div>
+                <h3> Registration </h3>
                 <div className="form-group">
                     <input ref='name' placeholder='Enter Name' className="text form-control"/>
                     <span style={{color: 'red'}}>{this.state.errors.name}</span>

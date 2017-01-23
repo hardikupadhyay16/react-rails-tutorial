@@ -26,8 +26,8 @@ var NewSession= React.createClass({
     render() {
         return (
             <div>
-                <div className="row">
-
+                <h3> Login </h3>
+                <div>
                     <span style={{color: 'red'}}>{this.state.errors.error}</span>
 
                     <div className="form-group">
