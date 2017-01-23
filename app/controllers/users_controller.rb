@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         @token = @user.authentications.build
         @token.save
         format.html { redirect_to @user, notice: 'user was successfully created.' }
-        format.json { render :show, status: :created, location: @token }
+        format.json { render json: @token }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
