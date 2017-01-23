@@ -1,5 +1,10 @@
 <div class="container">
   <div id="content">
-    <%= react_component 'Main' %>
+    <%if current_user.present?%>
+      <%= react_component 'Body' %>
+    <%else%>
+        <%= react_component 'Main' %>
+    <%end%>
+    <%= react_router 'MyRoutes' %>
   </div>
 </div>

@@ -6,11 +6,12 @@ var NewPost= React.createClass({
         var title = this.refs.title.value;
         var description = this.refs.description.value;
         var that = this;
+        var auth_token = localStorage.getItem("auth_token");
         $.ajax({
             url: 'posts',
             dataType: 'json',
             type: 'POST',
-            data: { post: { title: title, description: description } },
+            data: { post: { title: title, description: description },auth_token: auth_token },
             success: (response) => {
                 this.props.handleSubmit(response);
                 this.refs.title.value = '';
