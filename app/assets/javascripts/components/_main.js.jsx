@@ -6,7 +6,7 @@ var Main = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-9">
-
+                    <LocationSearch/>
                 </div>
                 <div className="col-md-3">
                     <NewSession />

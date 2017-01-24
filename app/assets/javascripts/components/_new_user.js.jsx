@@ -44,7 +44,7 @@ var NewUser= React.createClass({
                     <input type="password" ref='password_confirmation' placeholder='Enter password confirmation' className="text form-control"/>
                     <span style={{color: 'red'}}>{this.state.errors.password_confirmation}</span>
                 </div>
-                <button onClick={this.handleClick} className="btn btn-primary">Submit</button>
+                <button onClick={this.handleClick} className="btn btn-primary mrg-bottom">Submit</button>
             </div>
         )
     }
