@@ -12,8 +12,8 @@ var LocationSearch = React.createClass({
             success: (response) => {
                 this.setState({ posts: response })
             },
-            error() {
-                console.log('something went wrong')
+            error(response) {
+                console.log(response)
             }
         });
     },

@@ -20,7 +20,7 @@ var Post = React.createClass({
         var edit_btn;
         var del_btn;
         if (auth_token) {
-            edit_btn = <button className="btn btn-danger pull-right action-btn" onClick={this.props.handleDelete} >Delete</button> &nbsp;
+            edit_btn = <button className="btn btn-danger pull-right action-btn" onClick={this.props.handleDelete} >Delete</button>
             del_btn = <button className="btn btn-primary pull-right action-btn" onClick={this.handleEdit}>{this.state.editable ? 'Submit' : 'Edit' }</button>
         }
         return (
@@ -34,7 +34,6 @@ var Post = React.createClass({
                         {del_btn}
                     </div>
                     <div className="panel-body">{this.props.post.description}</div>
-
                 </div>
             </div>
         )
