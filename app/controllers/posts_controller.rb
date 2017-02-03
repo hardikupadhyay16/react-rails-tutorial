@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :index
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = params[:location].present? ? Post.near(params[:location], 20) : Post.all
   end
 
   # GET /posts/1
@@ -25,7 +25,11 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = @current_user.posts.new(post_params)
-
+    if params[:post][:location].present?
+      cordinate = Geocoder.coordinates(params[:post][:location])
+      @post.latitude = cordinate[0]
+      @post.longitude = cordinate[1]
+    end
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }

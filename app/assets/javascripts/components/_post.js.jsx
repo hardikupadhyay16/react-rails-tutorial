@@ -14,17 +14,28 @@ var Post = React.createClass({
         this.setState({ editable: !this.state.editable })
     },
     render() {
-        console.log(this.state.editable)
+        var auth_token = localStorage.getItem("auth_token");
         var title = this.state.editable ? <input type='text' ref='title' defaultValue={this.props.post.title} /> : '';
         var description = this.state.editable ? <input type='text' ref= 'description' defaultValue={this.props.post.description} />: '';
+        var edit_btn;
+        var del_btn;
+        if (auth_token) {
+            edit_btn = <button className="btn btn-danger pull-right action-btn" onClick={this.props.handleDelete} >Delete</button> &nbsp;
+            del_btn = <button className="btn btn-primary pull-right action-btn" onClick={this.handleEdit}>{this.state.editable ? 'Submit' : 'Edit' }</button>
+        }
         return (
             <div>
                 {title}
                 {description}
-                <h3>{this.props.post.title}</h3>
-                <p>{this.props.post.description}</p>
-                <button onClick={this.props.handleDelete} >Delete</button>
-                <button onClick={this.handleEdit}>{this.state.editable ? 'Submit' : 'Edit' }</button>
+                <div className="panel panel-primary">
+                    <div className="panel-heading">
+                        {this.props.post.title}
+                        {edit_btn}
+                        {del_btn}
+                    </div>
+                    <div className="panel-body">{this.props.post.description}</div>
+
+                </div>
             </div>
         )
     }
